@@ -4,13 +4,10 @@ const qrcode = require('qrcode-terminal');
 
 const { Client } = require('whatsapp-web.js');
 
-
+const mensajes = require('./Mensajes/mensajes.json')
 
 const SESSION_FILE_PATH = "./session.js";
 
-const country_cod = "57";
-const number = "3166561816";
-const msg = "Hola mundo"
 
 let sessionData;
 if(fs.existsSync(SESSION_FILE_PATH)) {
@@ -54,7 +51,8 @@ client.on('auth_failure', msg => {
 })
 
 client.on('message', msg =>{
-    if(msg.body == "hola") {
-        client.sendMessage(msg.from, "hola que tal colecito")
+    if(mensajes.TEXT_1.inludes(body)) {
+        client.sendMessage(msg.from, messages.TEXT_2.join(''))
+        return
     }
 })
